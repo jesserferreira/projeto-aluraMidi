@@ -3,17 +3,24 @@ function playSom(idElementoAudio) {
 }
 
 const listaDeTeclas = document.querySelectorAll('.tecla');
-let contador = 0;
 
-while(contador < listaDeTeclas.length) {
-    listaDeTeclas[contador].onclick = function(){
-        playSom('#som_tecla_pom')
-    };
-    contador = contador + 1;
-    console.log(contador);
+for(let contador = 0; contador < listaDeTeclas.length; contador++) {
+
+    const tecla = listaDeTeclas[contador]
+    const instrumento = tecla.classList[1]
+    const idAudio = `#som_${instrumento}`
+    //console.log(idAudio)
+
+    tecla.onclick = function(){
+        playSom(idAudio)
+    }
+
+    tecla.onkeydown = function(){
+        tecla.classList.add('ativa');
+    }
+
+    tecla.onkeyup = function(){
+        tecla.classList.remove('ativa')
+    }
+
 }
-
-
-
-
-//[tecla_pom, tecla_clap, tecla_tim, tecla_puff, tecla_splash, tecla_toim, tecla_psh, tecla_tic, tecla_tom]
